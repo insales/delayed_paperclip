@@ -43,12 +43,6 @@ module DelayedPaperclip
       }.each do |option, default|
         attachment_definitions[name][:delayed][option] = options.key?(option) ? options[option] : default
       end
-
-      if respond_to?(:after_commit)
-        after_commit  :enqueue_delayed_processing
-      else
-        after_save  :enqueue_delayed_processing
-      end
     end
   end
 
